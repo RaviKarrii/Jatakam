@@ -7,7 +7,8 @@ import java.time.LocalDateTime;
 
 public class GrahaData {
 
-    public GrahaData(){
+    public GrahaData(LocalDateTime localDateTime){
+        setLocalDateTime(localDateTime);
         setSun(new Graha());
         setMars(new Graha());
         setMoon(new Graha());
@@ -17,6 +18,7 @@ public class GrahaData {
         setJupitor(new Graha());
         setRahu(new Graha());
         setKetu(new Graha());
+        calculateAllData();
     }
 
     private LocalDateTime localDateTime;
@@ -130,7 +132,7 @@ public class GrahaData {
     }
 
 
-    public void calculateData(){
+    public void calculateAllData(){
         int year = this.localDateTime.getYear();
         int month = this.localDateTime.getMonthValue();
         int day = this.localDateTime.getDayOfMonth();

@@ -3,13 +3,10 @@ package org.ravikarri;
 import org.ravikarri.jatak.graha.GrahaData;
 
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-
-        GrahaData gd = new GrahaData();
-        gd.setLocalDateTime(LocalDateTime.now());
-        gd.calculateData();
+        GrahaData gd = new GrahaData(LocalDateTime.now());
     }
 }
