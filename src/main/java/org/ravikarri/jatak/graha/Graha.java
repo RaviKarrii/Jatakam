@@ -1,8 +1,8 @@
 package org.ravikarri.jatak.graha;
 
-import swisseph.SweConst;
-import swisseph.SweDate;
-import swisseph.SwissEph;
+import de.thmac.swisseph.SweConst;
+import de.thmac.swisseph.SweDate;
+import de.thmac.swisseph.SwissEph;
 
 public class Graha {
 

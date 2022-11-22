@@ -1,7 +1,7 @@
 package org.ravikarri.jatak.graha;
 
-import swisseph.SweConst;
-import swisseph.SweDate;
+import de.thmac.swisseph.SweConst;
+import de.thmac.swisseph.SweDate;
 
 import java.time.LocalDateTime;
 
