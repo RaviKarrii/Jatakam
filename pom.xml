@@ -28,4 +28,17 @@
     </dependency>
 </dependencies>
 
+
+    <distributionManagement>
+        <!-- ... Some other Distribution repository definitions -->
+
+        <repository>
+            <id>repsy</id>
+            <name>Repsy MVN</name>
+            <url>https://repo.repsy.io/mvn/ravikarri/jatakam</url>
+        </repository>
+
+        <!-- ... Some other Distribution repository definitions -->
+    </distributionManagement>
+
 </project>
