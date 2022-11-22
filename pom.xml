@@ -35,7 +35,7 @@
         <repository>
             <id>repsy</id>
             <name>Repsy MVN</name>
-            <url>https://repo.repsy.io/mvn/ravikarri/jatakam</url>
+            <url>https://repo.repsy.io/mvn/ravikarri/ravikarri</url>
         </repository>
 
         <!-- ... Some other Distribution repository definitions -->
