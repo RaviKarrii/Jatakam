@@ -40,10 +40,18 @@ public class PanchangaData {
     }
 
     private void calculatePanchang() {
-        calculateTithi();
-        calculateNakshatra();
-        calculateBhava();
-        calculateYoga();
-        calculateRashi();
+        String tithi = calculateTithi();
+        System.out.println(tithi);
+        //calculateNakshatra();
+        //calculateBhava();
+        //calculateYoga();
+        //calculateRashi();
+    }
+
+    private String calculateTithi() {
+        double value = (gd.getMoon().getLon() - gd.getSun().getLon())/12;
+        System.out.println(gd.getMoon().getLon());
+        System.out.println(gd.getSun().getLon());
+        return tithi[(int)value];
     }
 }
