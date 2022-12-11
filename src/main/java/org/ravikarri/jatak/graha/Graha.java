@@ -56,6 +56,24 @@ public class Graha {
 
     private String raasi;
 
+    public int getRaasiNumber() {
+        return raasiNumber;
+    }
+
+    public void setRaasiNumber(int raasiNumber) {
+        this.raasiNumber = raasiNumber;
+    }
+
+    public int getNakshatraNumber() {
+        return nakshatraNumber;
+    }
+
+    public void setNakshatraNumber(int nakshatraNumber) {
+        this.nakshatraNumber = nakshatraNumber;
+    }
+
+    private int raasiNumber,nakshatraNumber;
+
     private Integer search_int;
 
     private Double lon,lat;
@@ -72,11 +90,14 @@ public class Graha {
 
     public void generateLatLon(SweDate sd){
         SwissEph sw = new SwissEph();
-        double julDay = sd.getJulDay();
+        double julDay = sd.getJulDay() ;//+  sd.getDeltaT();
+        //System.out.println(julDay);
+        //System.out.println(sd.toString());
         double [] xx = new double[6];
         StringBuffer serr = new StringBuffer();
-        int iflag = SweConst.SEFLG_SWIEPH | SweConst.SEFLG_SPEED  | SweConst.SEFLG_SIDEREAL;
+        int iflag = SweConst.SEFLG_SWIEPH | SweConst.SEFLG_SPEED  | SweConst.SEFLG_SIDEREAL ;
 
+        sw.swe_set_sid_mode(1,0,0);
         sw.swe_calc_ut(julDay,this.search_int,iflag,xx,serr);
 
         this.lat = xx[0];
@@ -90,10 +111,21 @@ public class Graha {
         GrahaConstants gc = new GrahaConstants();
         String[] arr = dms(this.lat).split(":");
         this.derivedLat = deriveLat(Integer.parseInt(arr[0]))+"˚"+arr[1]+"ˈ"+arr[2]+"ˈˈ";
-        this.raasi = gc.raasiMapping[RaasiFinder(Integer.parseInt(arr[0]))];
+        this.raasiNumber = RaasiFinder(Integer.parseInt(arr[0]));
+        this.nakshatraNumber = calculateNakshatra(Integer.parseInt(arr[0]));
+        this.raasi = gc.raasiMapping[this.raasiNumber];
         System.out.println(gc.planetMapping[this.search_int]+ " -  Raasi : "+ this.raasi +" ,Pos : "+this.derivedLat+" ,Speed : "+this.speed+" ,isRetrograde : "+this.isRetrograde);
     }
 
+    public static int calculateNakshatra(double log)
+    {
+
+        int i = (int) (log / (13.333333));
+        if(i<0){
+            i=0;
+        }
+        return i;
+    }
     private String dms(double val){
         String res = new String();
         if (val < 0){
@@ -154,5 +186,32 @@ public class Graha {
             return 12;
         }
         return 0;
+    }
+
+    private String getLagnainfo(SwissEph sw, SweDate sd, double longitude, double latitude) {
+        int flags = SweConst.SEFLG_SIDEREAL;
+        double[] cusps = new double[13];
+        double[] acsc = new double[10];
+
+        int result = sw.swe_houses(sd.getJulDay(),
+                flags,
+                latitude,
+                longitude,
+                'P',
+                cusps,
+                acsc);
+
+        return "Ascendant " + toDMS(acsc[0]) + "\n";
+    }
+
+    static String toDMS(double d) {
+        d += 0.5/3600./10000.;	// round to 1/1000 of a second
+        int deg = (int) d;
+        d = (d - deg) * 60;
+        int min = (int) d;
+        d = (d - min) * 60;
+        double sec = d;
+
+        return String.format("%3d° %02d' %07.4f\"", deg, min, sec);
     }
 }
