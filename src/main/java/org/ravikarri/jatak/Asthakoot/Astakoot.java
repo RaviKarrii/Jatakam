@@ -2,8 +2,6 @@ package org.ravikarri.jatak.Asthakoot;
 
 public class Astakoot {
     int boyNak,girlNak,boyRaasi,girlRaasi;
-    public String nakshatra[] = {"Ashwini", "Bharani", "Krittika", "Rohini", "Mrigshira", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Swati", "Vishakha", "Anuradha", "Jyestha", "Mula", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishta", "Satabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati", "Abhijit"};
-    public int [] animalMappings = {0,1,2,3,3,4,5,2,5,6,6,7,8,9,8,9,11,10,4,11,12,11,13,0,13,7,1,12};
     Constants Arrays = new Constants();
     public Astakoot(int boyNak,int girlNak,int boyRaasi,int girlRaasi){
         this.boyNak = boyNak;

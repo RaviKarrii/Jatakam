@@ -10,7 +10,8 @@ import java.time.chrono.ChronoLocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        Panchanga panchanga = new Panchanga();
+        Astakoot astakoot = new Astakoot(1,1,1,1);
+        System.out.println(astakoot.getString());
 
     }
 }
